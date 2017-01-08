@@ -1,15 +1,20 @@
 package kr.jm.fx.path.treeview;
 
 import static java.util.stream.Collectors.toList;
-import static kr.jm.utils.helper.JMLambda.runIfTrue;
+import static kr.jm.utils.helper.JMLambda.consumeIfTrue;
 
 import java.util.List;
 import java.util.Optional;
 import java.util.ResourceBundle;
 
+import javafx.fxml.FXML;
 import javafx.scene.control.TreeItem;
 import javafx.scene.control.TreeView;
+import javafx.scene.input.KeyEvent;
+import javafx.scene.input.MouseEvent;
 import kr.jm.fx.JMFXComponentInterface;
+import kr.jm.fx.helper.JMFXKeyEvent;
+import kr.jm.fx.helper.JMFXMouseEvent;
 import kr.jm.fx.helper.JMFXValueEvent;
 import kr.jm.fx.path.JMFXPath;
 import kr.jm.utils.helper.JMOptional;
@@ -18,11 +23,9 @@ public class PathTreeView extends TreeView<JMFXPath>
 		implements JMFXComponentInterface {
 
 	protected PathTreeViewModel pathTreeViewModel;
-	protected JMFXValueEvent<JMFXPath> selectDirectoryEvent =
+	protected JMFXValueEvent<JMFXPath> openTreePathEvent =
 			new JMFXValueEvent<>();
-	protected JMFXValueEvent<List<JMFXPath>> selectedJMFXPathListEvent =
-			new JMFXValueEvent<>();
-	protected JMFXValueEvent<TreeItem<JMFXPath>> expansionChangeEvent =
+	protected JMFXValueEvent<JMFXPath> selectTreePathEvent =
 			new JMFXValueEvent<>();
 
 	public PathTreeView() {
@@ -33,36 +36,42 @@ public class PathTreeView extends TreeView<JMFXPath>
 		initJMFXComponent(i18nResourceBundle);
 	}
 
+	@FXML
+	public void onKeyReleasedOfPathTreeView(KeyEvent event) {
+		JMFXKeyEvent.fireEnter(event, this::fireTreeNodeOpenEvent);
+	}
+
+	@FXML
+	public void onMousePressedOfPathTreeView(MouseEvent event) {
+		if (event.getClickCount() == 2)
+			JMFXMouseEvent.fireLeftDoublePressed(event,
+					this::fireTreeNodeOpenEvent);
+	}
+
+	private void fireTreeNodeOpenEvent() {
+		TreeItem<JMFXPath> selectedItem = getSelectionModel().getSelectedItem();
+		consumeIfTrue(!selectedItem.isLeaf(), selectedItem.getValue(),
+				openTreePathEvent::changeValue);
+	}
+
 	@Override
 	public void bindModelToView() {
 		this.pathTreeViewModel = new PathTreeViewModel(
 				JMFXPath.getInstance("PathTreeView-" + System.nanoTime()));
-		TreeItem<JMFXPath> model = pathTreeViewModel.getModel();
-		JMFXPath.getRootPath().getObservableChildrenList().forEach(
-				jmfxPath -> this.pathTreeViewModel.addChildInRoot(jmfxPath));
-		setRoot(model);
+		setRoot(pathTreeViewModel.getModel());
 	}
 
 	@Override
 	public void initializeJMFXEvent() {
 		getSelectionModel().selectedItemProperty()
-				.addListener((observable, oldValue,
-						newValue) -> getCurrentSelectionListAsOpt().ifPresent(
-								selectedJMFXPathListEvent::changeValue));
-		pathTreeViewModel
-				.setExpansionChangeHook(expansionChangeEvent::changeValue);
-		selectedJMFXPathListEvent
-				.addListener(list -> JMOptional.getOptional(list)
-						.map(l -> l.get(0)).ifPresent(this::selectDircotyPath));
-	}
-
-	private void selectDircotyPath(JMFXPath jmfxPath) {
-		runIfTrue(jmfxPath.isDirectory(),
-				() -> selectDirectoryEvent.changeValue(jmfxPath));
+				.addListener((ob, o, n) -> Optional.ofNullable(n)
+						.map(TreeItem::getValue)
+						.ifPresent(selectTreePathEvent::changeValue));
 	}
 
 	@Override
 	public void initializeView() {
+
 	}
 
 	public void setDirectoriesOnly(boolean directoriesOnly) {
@@ -75,20 +84,23 @@ public class PathTreeView extends TreeView<JMFXPath>
 						.collect(toList()));
 	}
 
-	public JMFXValueEvent<JMFXPath> getSelectDirectoryEvent() {
-		return selectDirectoryEvent;
+	public JMFXValueEvent<JMFXPath> getOpenTreePathEvent() {
+		return openTreePathEvent;
 	}
 
-	public JMFXValueEvent<List<JMFXPath>> getSelectedJMFXPathListEvent() {
-		return selectedJMFXPathListEvent;
-	}
-
-	public JMFXValueEvent<TreeItem<JMFXPath>> getExpansionChangeEvent() {
-		return expansionChangeEvent;
+	public JMFXValueEvent<JMFXPath> getSelectTreePathEvent() {
+		return selectTreePathEvent;
 	}
 
 	public void setShowHidden(boolean b) {
-		pathTreeViewModel.setShowHidden(b);
+		List<TreeItem<JMFXPath>> expandedList =
+				pathTreeViewModel.getAllTreeItems().stream()
+						.filter(TreeItem::isExpanded).collect(toList());
+		synchronized (this) {
+			pathTreeViewModel.setShowHidden(b);
+			expandedList.stream().map(TreeItem::getValue)
+					.forEach(pathTreeViewModel::openDirectoryTreeItem);
+		}
 	}
 
 	public void openDirectoryPath(JMFXPath jmfxPath) {

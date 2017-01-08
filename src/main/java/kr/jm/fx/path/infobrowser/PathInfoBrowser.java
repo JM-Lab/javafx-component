@@ -41,13 +41,14 @@ public class PathInfoBrowser extends SplitPane
 
 	@Override
 	public void initializeJMFXEvent() {
-		pathTreeView.getSelectDirectoryEvent()
-				.addListener(this::changePathInfo);
+		pathTreeView.getSelectTreePathEvent().addListener(this::changePathInfo);
 	}
 
 	@Override
 	public void initializeView() {
 		pathTreeView.setDirectoriesOnly(true);
+		pathTreeView.setRootPathList(
+				JMFXPath.getRootPath().getObservableChildrenList());
 	}
 
 }
