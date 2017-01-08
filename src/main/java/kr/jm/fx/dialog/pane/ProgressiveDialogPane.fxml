@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.DialogPane?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ProgressBar?>
+<?import javafx.scene.control.ProgressIndicator?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+
+<fx:root type="DialogPane" xmlns="http://javafx.com/javafx/8.0.65"
+	xmlns:fx="http://javafx.com/fxml/1">
+	<content>
+		<VBox prefWidth="450.0">
+			<children>
+				<AnchorPane>
+					<children>
+						<Label fx:id="currentInfoLabel" textOverrun="LEADING_WORD_ELLIPSIS"
+							AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />
+					</children>
+					<VBox.margin>
+						<Insets bottom="10.0" />
+					</VBox.margin>
+				</AnchorPane>
+				<HBox>
+					<children>
+						<ProgressIndicator fx:id="infinityIndicator"
+							prefHeight="30.0" />
+						<StackPane HBox.hgrow="ALWAYS">
+							<children>
+								<AnchorPane>
+									<children>
+										<ProgressBar fx:id="progressBar" progress="0.0"
+											AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0"
+											AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+									</children>
+								</AnchorPane>
+								<Label fx:id="currentTotalLabel" />
+							</children>
+						</StackPane>
+						<AnchorPane>
+							<children>
+								<Label fx:id="percentLabel" alignment="CENTER" prefWidth="40.0"
+									AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0"
+									AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+							</children>
+						</AnchorPane>
+					</children>
+				</HBox>
+			</children>
+		</VBox>
+	</content>
+</fx:root>

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.BorderPane?>
+<?import kr.jm.fx.path.currentpathhbox.CurrentPathHBox?>
+<?import kr.jm.fx.path.treetableview.PathTreeTableView?>
+
+<fx:root type="BorderPane" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1">
+   <top>
+      <CurrentPathHBox fx:id="currentPathHBox" BorderPane.alignment="CENTER" />
+   </top>
+   <center>
+      <PathTreeTableView fx:id="pathTreeTableView" BorderPane.alignment="CENTER" />
+   </center>
+</fx:root>

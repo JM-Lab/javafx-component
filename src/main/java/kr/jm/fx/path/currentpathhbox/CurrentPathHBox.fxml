@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Tooltip?>
+<?import javafx.scene.layout.HBox?>
+<?import kr.jm.fx.path.currentpathcombobox.CurrentPathComboBox?>
+
+<fx:root type="HBox" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" >
+   <children>
+      <Button fx:id="backButton" mnemonicParsing="false" onAction="#onActionOfBackButton" prefHeight="26.0" prefWidth="4.0" text="‹">
+         <tooltip>
+            <Tooltip fx:id="backTooltip" text="%Navigation.Back" />
+         </tooltip></Button>
+      <Button fx:id="forwardButton" mnemonicParsing="false" onAction="#onActionOfForwardButton" prefHeight="26.0" prefWidth="4.0" text="›">
+         <tooltip>
+            <Tooltip fx:id="forwardTooltip" text="%Navigation.Forward" />
+         </tooltip></Button>
+      <Button fx:id="goToParentButton" mnemonicParsing="false" onAction="#onActionOfUpButton" prefHeight="26.0" prefWidth="4.0" text="△">
+         <tooltip>
+            <Tooltip fx:id="goToParentTooltip" text="%Navigation.GoToParent" />
+         </tooltip></Button>
+      <CurrentPathComboBox fx:id="currentPathComboBox" />
+   </children>
+</fx:root>

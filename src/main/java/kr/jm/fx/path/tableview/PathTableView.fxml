@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+
+<fx:root onMousePressed="#onMousePressedOfInfoTable"
+	onKeyPressed="#onKeyPressedOfInfoTable" onSort="#onSortOfInfoTable"
+	tableMenuButtonVisible="true" type="TableView" xmlns="http://javafx.com/javafx/8.0.65"
+	xmlns:fx="http://javafx.com/fxml/1">
+	<columns>
+		<TableColumn fx:id="nameColumn" prefWidth="75.0" text="%JMFXPath.Name" />
+		<TableColumn fx:id="dateModifiedColumn" editable="false"
+			prefWidth="75.0" text="%JMFXPath.DateModified" />
+		<TableColumn fx:id="sizeColumn" editable="false"
+			prefWidth="75.0" text="%JMFXPath.Size" />
+		<TableColumn fx:id="typeColumn" editable="false"
+			prefWidth="75.0" text="%JMFXPath.Type" />
+	</columns>
+</fx:root>

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.TreeTableColumn?>
+<?import javafx.scene.control.TreeTableView?>
+
+<fx:root showRoot="false"
+	tableMenuButtonVisible="true" type="TreeTableView" xmlns="http://javafx.com/javafx/8.0.65"
+	xmlns:fx="http://javafx.com/fxml/1">
+	<columns>
+		<TreeTableColumn fx:id="nameColumn" prefWidth="270.0"
+			text="%JMFXPath.Name" />
+		<TreeTableColumn fx:id="dateModifiedColumn" editable="false"
+			prefWidth="120.0" text="%JMFXPath.DateModified" />
+		<TreeTableColumn fx:id="sizeColumn" editable="false"
+			prefWidth="75.0" text="%JMFXPath.Size" />
+		<TreeTableColumn fx:id="typeColumn" editable="false"
+			prefWidth="75.0" text="%JMFXPath.Type" />
+	</columns>
+</fx:root>
