@@ -11,6 +11,9 @@ import kr.jm.fx.path.JMFXPath;
 import kr.jm.fx.path.currentpathhbox.CurrentPathHBox;
 import kr.jm.fx.path.tableview.PathTableView;
 
+/**
+ * The Class PathInfoTableView.
+ */
 public class PathInfoTableView extends BorderPane
 		implements JMFXCompositeComponentInterface {
 
@@ -19,10 +22,19 @@ public class PathInfoTableView extends BorderPane
 	@FXML
 	protected PathTableView pathTableView;
 
+	/**
+	 * Instantiates a new path info table view.
+	 */
 	public PathInfoTableView() {
 		this(DefaultJMFXComponentI18nResourceBundle);
 	}
 
+	/**
+	 * Instantiates a new path info table view.
+	 *
+	 * @param i18nResourceBundle
+	 *            the i 18 n resource bundle
+	 */
 	public PathInfoTableView(ResourceBundle i18nResourceBundle) {
 		initJMFXComponent(i18nResourceBundle);
 	}
@@ -35,10 +47,21 @@ public class PathInfoTableView extends BorderPane
 		return pathTableView.getSelectedJMFXPathListEvent();
 	}
 
+	/**
+	 * Change path info.
+	 *
+	 * @param jmfxPath
+	 *            the jmfx path
+	 */
 	public void changePathInfo(JMFXPath jmfxPath) {
 		currentPathHBox.changeCurrentPath(jmfxPath);
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see kr.jm.fx.JMFXComponentInterface#initializeJMFXEvent()
+	 */
 	@Override
 	public void initializeJMFXEvent() {
 		getCurrentPathChangeEvent()
@@ -47,6 +70,11 @@ public class PathInfoTableView extends BorderPane
 				.addListener(currentPathHBox::changeCurrentPath);
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see kr.jm.fx.JMFXComponentInterface#initializeView()
+	 */
 	@Override
 	public void initializeView() {
 		JMFXPath rootPath = JMFXPath.getRootPath();

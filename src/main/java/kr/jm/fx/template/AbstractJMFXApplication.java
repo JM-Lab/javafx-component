@@ -16,6 +16,12 @@ import kr.jm.utils.helper.JMLog;
 import kr.jm.utils.helper.JMOptional;
 import kr.jm.utils.helper.JMResources;
 
+/**
+ * The Class AbstractJMFXApplication.
+ *
+ * @param <C>
+ *            the generic type
+ */
 public abstract class AbstractJMFXApplication<C extends JMFXComponentInterface>
 		extends Application {
 
@@ -30,15 +36,43 @@ public abstract class AbstractJMFXApplication<C extends JMFXComponentInterface>
 
 	private String title;
 
+	/**
+	 * Instantiates a new abstract JMFX application.
+	 *
+	 * @param jmfxComponent
+	 *            the jmfx component
+	 */
 	public AbstractJMFXApplication(C jmfxComponent) {
 		this(jmfxComponent, 800, 600);
 	}
 
+	/**
+	 * Instantiates a new abstract JMFX application.
+	 *
+	 * @param jmfxComponent
+	 *            the jmfx component
+	 * @param width
+	 *            the width
+	 * @param height
+	 *            the height
+	 */
 	public AbstractJMFXApplication(C jmfxComponent, double width,
 			double height) {
 		this(jmfxComponent, width, height, "css/JMFXApplication.css");
 	}
 
+	/**
+	 * Instantiates a new abstract JMFX application.
+	 *
+	 * @param jmfxComponent
+	 *            the jmfx component
+	 * @param width
+	 *            the width
+	 * @param height
+	 *            the height
+	 * @param cssClasspathOrFilePaths
+	 *            the css classpath or file paths
+	 */
 	public AbstractJMFXApplication(C jmfxComponent, double width, double height,
 			String... cssClasspathOrFilePaths) {
 		this.jmfxComponent = jmfxComponent;
@@ -49,6 +83,11 @@ public abstract class AbstractJMFXApplication<C extends JMFXComponentInterface>
 				.collect(toList());
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see javafx.application.Application#start(javafx.stage.Stage)
+	 */
 	@Override
 	public void start(Stage primaryStage) {
 		try {

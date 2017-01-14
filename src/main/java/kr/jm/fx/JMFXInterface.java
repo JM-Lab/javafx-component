@@ -9,6 +9,9 @@ import javafx.fxml.FXMLLoader;
 import kr.jm.utils.enums.OS;
 import kr.jm.utils.helper.JMString;
 
+/**
+ * The Interface JMFXInterface.
+ */
 public interface JMFXInterface {
 	static final String FXML = "fxml";
 

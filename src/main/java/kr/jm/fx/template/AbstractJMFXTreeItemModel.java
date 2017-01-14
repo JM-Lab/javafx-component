@@ -19,11 +19,23 @@ import javafx.scene.control.TreeItem;
 import kr.jm.utils.datastructure.JMMap;
 import kr.jm.utils.helper.JMOptional;
 
+/**
+ * The Class AbstractJMFXTreeItemModel.
+ *
+ * @param <B>
+ *            the generic type
+ */
 public abstract class AbstractJMFXTreeItemModel<B>
 		extends AbstractJMFXModel<TreeItem<B>> {
 	private Map<B, TreeItem<B>> indexedTreeItemMap = new ConcurrentHashMap<>();
 	protected Consumer<TreeItem<B>> expansionChangeHook;
 
+	/**
+	 * Instantiates a new abstract JMFX tree item model.
+	 *
+	 * @param root
+	 *            the root
+	 */
 	public AbstractJMFXTreeItemModel(B root) {
 		super(new TreeItem<B>(root) {
 			@Override
@@ -36,10 +48,24 @@ public abstract class AbstractJMFXTreeItemModel<B>
 		model.setExpanded(true);
 	}
 
+	/**
+	 * Checks if is exist.
+	 *
+	 * @param value
+	 *            the value
+	 * @return true, if is exist
+	 */
 	public boolean isExist(B value) {
 		return indexedTreeItemMap.containsKey(value);
 	}
 
+	/**
+	 * Gets the tree item.
+	 *
+	 * @param value
+	 *            the value
+	 * @return the tree item
+	 */
 	public TreeItem<B> getTreeItem(B value) {
 		return indexedTreeItemMap.get(value);
 	}
@@ -52,10 +78,26 @@ public abstract class AbstractJMFXTreeItemModel<B>
 		}
 	}
 
+	/**
+	 * Adds the child in root.
+	 *
+	 * @param value
+	 *            the value
+	 * @return true, if successful
+	 */
 	public boolean addChildInRoot(B value) {
 		return addChildInParent(model, value);
 	}
 
+	/**
+	 * Adds the child in parent.
+	 *
+	 * @param parent
+	 *            the parent
+	 * @param value
+	 *            the value
+	 * @return true, if successful
+	 */
 	public boolean addChildInParent(TreeItem<B> parent, B value) {
 		synchronized (parent) {
 			return parent.getChildren().add(JMMap.putGetNew(indexedTreeItemMap,
@@ -64,6 +106,15 @@ public abstract class AbstractJMFXTreeItemModel<B>
 		}
 	}
 
+	/**
+	 * Adds the children in tree item.
+	 *
+	 * @param parent
+	 *            the parent
+	 * @param chidrenList
+	 *            the chidren list
+	 * @return true, if successful
+	 */
 	public boolean addChildrenInTreeItem(TreeItem<B> parent,
 			List<B> chidrenList) {
 		synchronized (parent) {
@@ -76,6 +127,15 @@ public abstract class AbstractJMFXTreeItemModel<B>
 
 	abstract protected TreeItem<B> buildNewTreeItem(B value);
 
+	/**
+	 * Find tree item in children.
+	 *
+	 * @param parentTreeItem
+	 *            the parent tree item
+	 * @param conditionTarget
+	 *            the condition target
+	 * @return the optional
+	 */
 	public Optional<TreeItem<B>> findTreeItemInChildren(
 			TreeItem<B> parentTreeItem, B conditionTarget) {
 		return getChildenTreeItemList(parentTreeItem).stream()
@@ -83,6 +143,13 @@ public abstract class AbstractJMFXTreeItemModel<B>
 				.findFirst();
 	}
 
+	/**
+	 * Gets the childen tree item list.
+	 *
+	 * @param parentTreeItem
+	 *            the parent tree item
+	 * @return the childen tree item list
+	 */
 	public List<TreeItem<B>>
 			getChildenTreeItemList(TreeItem<B> parentTreeItem) {
 		return parentTreeItem.isLeaf() ? Collections.emptyList()
@@ -91,6 +158,13 @@ public abstract class AbstractJMFXTreeItemModel<B>
 								() -> buildChildenTreeItemList(parentTreeItem));
 	}
 
+	/**
+	 * Builds the childen tree item list.
+	 *
+	 * @param parent
+	 *            the parent
+	 * @return the observable list
+	 */
 	public ObservableList<TreeItem<B>>
 			buildChildenTreeItemList(TreeItem<B> parent) {
 		return addChildrenInTreeItem(parent,
@@ -99,6 +173,13 @@ public abstract class AbstractJMFXTreeItemModel<B>
 						: FXCollections.emptyObservableList();
 	}
 
+	/**
+	 * Removes the all in parent.
+	 *
+	 * @param treeItem
+	 *            the tree item
+	 * @return the list
+	 */
 	public List<TreeItem<B>> removeAllInParent(TreeItem<B> treeItem) {
 		synchronized (treeItem) {
 			return new ArrayList<>(treeItem.getChildren()).stream()
@@ -106,6 +187,13 @@ public abstract class AbstractJMFXTreeItemModel<B>
 		}
 	}
 
+	/**
+	 * Removes the in parent.
+	 *
+	 * @param treeItem
+	 *            the tree item
+	 * @return the tree item
+	 */
 	public TreeItem<B> removeInParent(TreeItem<B> treeItem) {
 		synchronized (treeItem) {
 			TreeItem<B> parent = treeItem.getParent();

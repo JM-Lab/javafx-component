@@ -8,8 +8,16 @@ import kr.jm.utils.JMProgressiveManager;
 import kr.jm.utils.helper.JMPath;
 import kr.jm.utils.helper.JMThread;
 
+/**
+ * The Class JMFXDialogApplication.
+ */
 public class JMFXDialogApplication extends Application {
 
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see javafx.application.Application#start(javafx.stage.Stage)
+	 */
 	@Override
 	public void start(Stage stage) {
 		Button progressiveDialogButton = new Button("progressiveDialog");
@@ -31,6 +39,12 @@ public class JMFXDialogApplication extends Application {
 		stage.show();
 	}
 
+	/**
+	 * The main method.
+	 *
+	 * @param args
+	 *            the arguments
+	 */
 	public static void main(String[] args) {
 		launch(args);
 	}

@@ -29,6 +29,9 @@ import kr.jm.fx.path.JMFXPath;
 import kr.jm.utils.FileSize;
 import kr.jm.utils.helper.JMOptional;
 
+/**
+ * The Class PathTableView.
+ */
 public class PathTableView extends TableView<JMFXPath>
 		implements JMFXComponentInterface {
 
@@ -72,10 +75,19 @@ public class PathTableView extends TableView<JMFXPath>
 			new JMFXValueEvent<>();
 	protected boolean showHidden = false;
 
+	/**
+	 * Instantiates a new path table view.
+	 */
 	public PathTableView() {
 		this(DefaultJMFXComponentI18nResourceBundle);
 	}
 
+	/**
+	 * Instantiates a new path table view.
+	 *
+	 * @param i18nResourceBundle
+	 *            the i 18 n resource bundle
+	 */
 	public PathTableView(ResourceBundle i18nResourceBundle) {
 		this.pathInfoTableModel = new PathTableViewModel();
 		initJMFXComponent(i18nResourceBundle);
@@ -86,6 +98,12 @@ public class PathTableView extends TableView<JMFXPath>
 		return cellData.getValue().jmfxPathProperty();
 	}
 
+	/**
+	 * Change rows into children info.
+	 *
+	 * @param jmfxPath
+	 *            the jmfx path
+	 */
 	public void changeRowsIntoChildrenInfo(JMFXPath jmfxPath) {
 		Optional.ofNullable(jmfxPath).map(JMFXPath::getObservableChildrenList)
 				.filter(peek(list -> pathInfoTableModel
@@ -97,6 +115,11 @@ public class PathTableView extends TableView<JMFXPath>
 				.ifPresent(list -> openDirectoryEvent.changeValue(jmfxPath));
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see kr.jm.fx.JMFXComponentInterface#bindModelToView()
+	 */
 	@Override
 	public void bindModelToView() {
 		setItems(pathInfoTableModel.getModel());
@@ -131,6 +154,11 @@ public class PathTableView extends TableView<JMFXPath>
 		}
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see kr.jm.fx.JMFXComponentInterface#initializeView()
+	 */
 	@Override
 	public void initializeView() {
 		this.setPlaceholder(new Label());
@@ -150,6 +178,11 @@ public class PathTableView extends TableView<JMFXPath>
 				cellData -> cellData.getValue().typeProperty());
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see kr.jm.fx.JMFXComponentInterface#initializeJMFXEvent()
+	 */
 	@Override
 	public void initializeJMFXEvent() {
 		getSelectionModel().selectedItemProperty().addListener(
@@ -169,6 +202,9 @@ public class PathTableView extends TableView<JMFXPath>
 		this.showHidden = bool;
 	}
 
+	/**
+	 * Refresh view.
+	 */
 	public void refreshView() {
 		JMOptional.getOptional(getItems()).map(l -> l.get(0))
 				.flatMap(JMFXPath::getParent)

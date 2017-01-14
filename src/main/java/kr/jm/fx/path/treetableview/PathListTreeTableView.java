@@ -11,6 +11,9 @@ import javafx.scene.control.TreeTableColumn;
 import kr.jm.fx.path.JMFXPath;
 import kr.jm.fx.path.treeview.PathTreeViewModel;
 
+/**
+ * The Class PathListTreeTableView.
+ */
 public class PathListTreeTableView extends PathTreeTableView {
 
 	@FXML
@@ -19,14 +22,28 @@ public class PathListTreeTableView extends PathTreeTableView {
 	private TreeItem<JMFXPath> rootTreeItem;
 	private List<JMFXPath> jmfxPathList;
 
+	/**
+	 * Instantiates a new path list tree table view.
+	 */
 	public PathListTreeTableView() {
 		super();
 	}
 
+	/**
+	 * Instantiates a new path list tree table view.
+	 *
+	 * @param i18nResourceBundle
+	 *            the i 18 n resource bundle
+	 */
 	public PathListTreeTableView(ResourceBundle i18nResourceBundle) {
 		super(i18nResourceBundle);
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see kr.jm.fx.path.treetableview.PathTreeTableView#initializeView()
+	 */
 	@Override
 	public void initializeView() {
 		super.initializeView();
@@ -38,6 +55,11 @@ public class PathListTreeTableView extends PathTreeTableView {
 						.map(SimpleObjectProperty<Integer>::new).orElse(null));
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see kr.jm.fx.path.treetableview.PathTreeTableView#bindModelToView()
+	 */
 	@Override
 	public void bindModelToView() {
 		pathTreeViewModel = new PathTreeViewModel(JMFXPath
@@ -46,6 +68,13 @@ public class PathListTreeTableView extends PathTreeTableView {
 		this.setRoot(rootTreeItem);
 	}
 
+	/**
+	 * Sets the JMFX path list.
+	 *
+	 * @param jmfxPathList
+	 *            the jmfx path list
+	 * @return the path list tree table view
+	 */
 	public PathListTreeTableView setJMFXPathList(List<JMFXPath> jmfxPathList) {
 		pathTreeViewModel.setChildrenInRoot(this.jmfxPathList = jmfxPathList);
 		return this;

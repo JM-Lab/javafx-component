@@ -19,6 +19,9 @@ import kr.jm.fx.path.JMFXPath;
 import kr.jm.fx.path.currentpathcombobox.CurrentPathComboBox;
 import kr.jm.utils.collections.JMLimitedList;
 
+/**
+ * The Class CurrentPathHBox.
+ */
 public class CurrentPathHBox extends HBox
 		implements JMFXCompositeComponentInterface {
 
@@ -60,10 +63,19 @@ public class CurrentPathHBox extends HBox
 
 	protected JMLimitedList<JMFXPath> limitedHistoryList;
 
+	/**
+	 * Instantiates a new current path H box.
+	 */
 	public CurrentPathHBox() {
 		this(DefaultJMFXComponentI18nResourceBundle);
 	}
 
+	/**
+	 * Instantiates a new current path H box.
+	 *
+	 * @param i18nResourceBundle
+	 *            the i 18 n resource bundle
+	 */
 	public CurrentPathHBox(ResourceBundle i18nResourceBundle) {
 		initJMFXComponent(i18nResourceBundle);
 	}
@@ -76,6 +88,12 @@ public class CurrentPathHBox extends HBox
 		}
 	}
 
+	/**
+	 * Change current path.
+	 *
+	 * @param jmfxPath
+	 *            the jmfx path
+	 */
 	public void changeCurrentPath(JMFXPath jmfxPath) {
 		manageStatusOfBottons(jmfxPath);
 		if (limitedHistoryList.size() == 0 || limitedHistoryList.getCurrent()
@@ -101,6 +119,11 @@ public class CurrentPathHBox extends HBox
 				- limitedHistoryList.getCurrentIndex() == 1);
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see kr.jm.fx.JMFXComponentInterface#initializeView()
+	 */
 	@Override
 	public void initializeView() {
 		this.limitedHistoryList = new JMLimitedList<>(10);
@@ -109,6 +132,11 @@ public class CurrentPathHBox extends HBox
 		setHgrow(currentPathComboBox, Priority.ALWAYS);
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see kr.jm.fx.JMFXComponentInterface#initializeJMFXEvent()
+	 */
 	@Override
 	public void initializeJMFXEvent() {
 		getCurrentPathChangeEvent().addListener(this::changeCurrentPath);

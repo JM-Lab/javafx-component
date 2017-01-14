@@ -10,8 +10,15 @@ import kr.jm.utils.JMProgressiveManager;
 import kr.jm.utils.helper.JMPath;
 import kr.jm.utils.helper.JMThread;
 
+/**
+ * The Class ProgresiveDialogPaneApplication.
+ */
 public class ProgresiveDialogPaneApplication
 		extends AbstractJMFXApplication<ProgressiveDialogPane> {
+
+	/**
+	 * Instantiates a new progresive dialog pane application.
+	 */
 	public ProgresiveDialogPaneApplication() {
 		super(new ProgressiveDialogPane());
 		JMProgressiveManager<?, ?> progressiveManager =
@@ -28,6 +35,12 @@ public class ProgresiveDialogPaneApplication
 
 	}
 
+	/**
+	 * The main method.
+	 *
+	 * @param args
+	 *            the arguments
+	 */
 	public static void main(String[] args) {
 		launch(args);
 	}

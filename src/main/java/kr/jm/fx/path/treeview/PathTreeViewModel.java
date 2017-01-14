@@ -13,8 +13,17 @@ import javafx.scene.control.TreeItem;
 import kr.jm.fx.path.JMFXPath;
 import kr.jm.fx.template.AbstractJMFXTreeItemModel;
 
+/**
+ * The Class PathTreeViewModel.
+ */
 public class PathTreeViewModel extends AbstractJMFXTreeItemModel<JMFXPath> {
 
+	/**
+	 * Instantiates a new path tree view model.
+	 *
+	 * @param jmfxRootPath
+	 *            the jmfx root path
+	 */
 	public PathTreeViewModel(JMFXPath jmfxRootPath) {
 		super(jmfxRootPath);
 	}
@@ -45,11 +54,25 @@ public class PathTreeViewModel extends AbstractJMFXTreeItemModel<JMFXPath> {
 				.collect(toList());
 	}
 
+	/**
+	 * Gets the children tree item stream.
+	 *
+	 * @param value
+	 *            the value
+	 * @return the children tree item stream
+	 */
 	public Stream<TreeItem<JMFXPath>>
 			getChildrenTreeItemStream(TreeItem<JMFXPath> value) {
 		return buildChildenTreeItemList(value).stream();
 	}
 
+	/**
+	 * Open directory tree item.
+	 *
+	 * @param jmfxPath
+	 *            the jmfx path
+	 * @return the optional
+	 */
 	public Optional<TreeItem<JMFXPath>>
 			openDirectoryTreeItem(JMFXPath jmfxPath) {
 		return Optional.of(jmfxPath)
@@ -79,6 +102,12 @@ public class PathTreeViewModel extends AbstractJMFXTreeItemModel<JMFXPath> {
 		this.directoriesOnly = directoriesOnly;
 	}
 
+	/**
+	 * Reexpand.
+	 *
+	 * @param jmfxPath
+	 *            the jmfx path
+	 */
 	public void reexpand(JMFXPath jmfxPath) {
 		Optional.ofNullable(getTreeItem(jmfxPath)).filter(TreeItem::isExpanded)
 				.ifPresent(this::reexpand);

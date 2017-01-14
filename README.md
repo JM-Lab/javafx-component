@@ -5,7 +5,7 @@ JMLab JavaFX Component
 * Other GUI Components - JMFXToast, JMFXDialog
 
 ## version
-0.1.0
+[![Maven Central](https://maven-badges.herokuapp.com/maven-central/com.github.jm-lab/jmlab-javafx-component/badge.svg)](http://search.maven.org/#artifactdetails%7Ccom.github.jm-lab%7Cjmlab-javafx-component%7C0.1.0%7Cjar)
 
 ## Prerequisites:
 * Java 8 or later
@@ -31,6 +31,29 @@ Checkout the source code:
     cd javafx-component
     git checkout -b 0.1.0 origin/0.1.0
     mvn install
+
+###For example :
+[Work With The Latest SceneBuilder](http://gluonhq.com/labs/scene-builder/)
+* 1. Jar/FXML Manager
+
+ ![Screenshot](https://github.com/JM-Lab/javafx-component/blob/master/screenshot/1-SceneBuilderJarFXMLManager.png)
+
+* 2. Search And Add Jar
+
+ ![Screenshot](https://github.com/JM-Lab/javafx-component/blob/master/screenshot/2-SceneBuilderSearchAddJar.png)
+
+* 3. Import JMFX Component 
+
+ ![Screenshot](https://github.com/JM-Lab/javafx-component/blob/master/screenshot/3-ScenebuilderImportDialog.png)
+
+* 4. Library Manager 
+
+ ![Screenshot](https://github.com/JM-Lab/javafx-component/blob/master/screenshot/4-ScenebuilderLibraryManager.png)
+
+* 5. [![Maven Central](https://maven-badges.herokuapp.com/maven-central/kr.jmlab/jmlab-utils-java8/badge.svg)](http://search.maven.org/#artifactdetails%7Ckr.jmlab%7Cjmlab-utils-java8%7C0.1.84%7Cjar)Custom Component 
+
+ ![Screenshot](https://github.com/JM-Lab/javafx-component/blob/master/screenshot/5-SceneBuilderCustomComponent.png)
+
 
 ## Useful JavaFX Components :
 * **CurrentPathComboBox**
@@ -76,9 +99,6 @@ Checkout the source code:
 * **JMFXToast**
 
 ![Screenshot](https://github.com/JM-Lab/javafx-component/blob/master/screenshot/JMFXToast.png)
-
-###For example :
-[Work With The Latest SceneBuilder](http://gluonhq.com/labs/scene-builder/)
 
 ## LICENSE
 Copyright 2017 Jemin Huh (JM)

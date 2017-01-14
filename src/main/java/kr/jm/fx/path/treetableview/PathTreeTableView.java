@@ -21,6 +21,9 @@ import kr.jm.fx.path.treeview.PathTreeViewModel;
 import kr.jm.utils.FileSize;
 import kr.jm.utils.helper.JMOptional;
 
+/**
+ * The Class PathTreeTableView.
+ */
 public class PathTreeTableView extends TreeTableView<JMFXPath>
 		implements JMFXComponentInterface {
 
@@ -39,10 +42,19 @@ public class PathTreeTableView extends TreeTableView<JMFXPath>
 	protected JMFXValueEvent<TreeItem<JMFXPath>> expansionChangeEvent =
 			new JMFXValueEvent<>();
 
+	/**
+	 * Instantiates a new path tree table view.
+	 */
 	public PathTreeTableView() {
 		this(DefaultJMFXComponentI18nResourceBundle);
 	}
 
+	/**
+	 * Instantiates a new path tree table view.
+	 *
+	 * @param i18nResourceBundle
+	 *            the i 18 n resource bundle
+	 */
 	public PathTreeTableView(ResourceBundle i18nResourceBundle) {
 		initJMFXComponent(i18nResourceBundle);
 	}
@@ -52,12 +64,22 @@ public class PathTreeTableView extends TreeTableView<JMFXPath>
 		return cellData.getValue().getValue().jmfxPathProperty();
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see kr.jm.fx.JMFXComponentInterface#bindModelToView()
+	 */
 	@Override
 	public void bindModelToView() {
 		this.pathTreeViewModel = new PathTreeViewModel(JMFXPath.getRootPath());
 		this.setRoot(pathTreeViewModel.getModel());
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see kr.jm.fx.JMFXComponentInterface#initializeView()
+	 */
 	@Override
 	public void initializeView() {
 		this.setPlaceholder(new Label());
@@ -74,6 +96,11 @@ public class PathTreeTableView extends TreeTableView<JMFXPath>
 				cellData -> cellData.getValue().getValue().typeProperty());
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see kr.jm.fx.JMFXComponentInterface#initializeJMFXEvent()
+	 */
 	@Override
 	public void initializeJMFXEvent() {
 		getSelectionModel().selectedItemProperty()
@@ -84,6 +111,12 @@ public class PathTreeTableView extends TreeTableView<JMFXPath>
 				.setExpansionChangeHook(expansionChangeEvent::changeValue);
 	}
 
+	/**
+	 * Open directory path.
+	 *
+	 * @param jmfxPath
+	 *            the jmfx path
+	 */
 	public void openDirectoryPath(JMFXPath jmfxPath) {
 		pathTreeViewModel.openDirectoryTreeItem(jmfxPath)
 				.ifPresent(treeItem -> scrollTo(getRow(treeItem)));
@@ -111,6 +144,12 @@ public class PathTreeTableView extends TreeTableView<JMFXPath>
 		pathTreeViewModel.setChildrenInRoot(rootPathList);
 	}
 
+	/**
+	 * Adds the root path.
+	 *
+	 * @param jmfxPath
+	 *            the jmfx path
+	 */
 	public void addRootPath(JMFXPath jmfxPath) {
 		pathTreeViewModel.addChildInRoot(jmfxPath);
 	}

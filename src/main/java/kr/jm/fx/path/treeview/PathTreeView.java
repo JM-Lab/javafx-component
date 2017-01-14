@@ -19,6 +19,9 @@ import kr.jm.fx.helper.JMFXValueEvent;
 import kr.jm.fx.path.JMFXPath;
 import kr.jm.utils.helper.JMOptional;
 
+/**
+ * The Class PathTreeView.
+ */
 public class PathTreeView extends TreeView<JMFXPath>
 		implements JMFXComponentInterface {
 
@@ -28,19 +31,40 @@ public class PathTreeView extends TreeView<JMFXPath>
 	protected JMFXValueEvent<JMFXPath> selectTreePathEvent =
 			new JMFXValueEvent<>();
 
+	/**
+	 * Instantiates a new path tree view.
+	 */
 	public PathTreeView() {
 		this(DefaultJMFXComponentI18nResourceBundle);
 	}
 
+	/**
+	 * Instantiates a new path tree view.
+	 *
+	 * @param i18nResourceBundle
+	 *            the i 18 n resource bundle
+	 */
 	public PathTreeView(ResourceBundle i18nResourceBundle) {
 		initJMFXComponent(i18nResourceBundle);
 	}
 
+	/**
+	 * On key released of path tree view.
+	 *
+	 * @param event
+	 *            the event
+	 */
 	@FXML
 	public void onKeyReleasedOfPathTreeView(KeyEvent event) {
 		JMFXKeyEvent.fireEnter(event, this::fireTreeNodeOpenEvent);
 	}
 
+	/**
+	 * On mouse pressed of path tree view.
+	 *
+	 * @param event
+	 *            the event
+	 */
 	@FXML
 	public void onMousePressedOfPathTreeView(MouseEvent event) {
 		if (event.getClickCount() == 2)
@@ -54,6 +78,11 @@ public class PathTreeView extends TreeView<JMFXPath>
 				openTreePathEvent::changeValue);
 	}
 
+	/*
+	 * (non-Javadoc)
+	 *
+	 * @see kr.jm.fx.JMFXComponentInterface#bindModelToView()
+	 */
 	@Override
 	public void bindModelToView() {
 		this.pathTreeViewModel = new PathTreeViewModel(
@@ -61,6 +90,11 @@ public class PathTreeView extends TreeView<JMFXPath>
 		setRoot(pathTreeViewModel.getModel());
 	}
 
+	/*
+	 * (non-Javadoc)
+	 *
+	 * @see kr.jm.fx.JMFXComponentInterface#initializeJMFXEvent()
+	 */
 	@Override
 	public void initializeJMFXEvent() {
 		getSelectionModel().selectedItemProperty()
@@ -69,6 +103,11 @@ public class PathTreeView extends TreeView<JMFXPath>
 						.ifPresent(selectTreePathEvent::changeValue));
 	}
 
+	/*
+	 * (non-Javadoc)
+	 *
+	 * @see kr.jm.fx.JMFXComponentInterface#initializeView()
+	 */
 	@Override
 	public void initializeView() {
 
@@ -103,6 +142,12 @@ public class PathTreeView extends TreeView<JMFXPath>
 		}
 	}
 
+	/**
+	 * Open directory path.
+	 *
+	 * @param jmfxPath
+	 *            the jmfx path
+	 */
 	public void openDirectoryPath(JMFXPath jmfxPath) {
 		pathTreeViewModel.openDirectoryTreeItem(jmfxPath)
 				.ifPresent(treeItem -> scrollTo(getRow(treeItem)));
@@ -112,6 +157,12 @@ public class PathTreeView extends TreeView<JMFXPath>
 		pathTreeViewModel.setChildrenInRoot(rootPathList);
 	}
 
+	/**
+	 * Adds the root path.
+	 *
+	 * @param jmfxPath
+	 *            the jmfx path
+	 */
 	public void addRootPath(JMFXPath jmfxPath) {
 		pathTreeViewModel.addChildInRoot(jmfxPath);
 	}

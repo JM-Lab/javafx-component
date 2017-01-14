@@ -11,10 +11,19 @@ import javafx.scene.input.ClipboardContent;
 import kr.jm.fx.path.JMFXPath;
 import kr.jm.utils.helper.JMOptional;
 
+/**
+ * The Class JMFXClipboard.
+ */
 public class JMFXClipboard {
 	private static List<File> lastClipboardFileList;
 	private static Clipboard clipboard = Clipboard.getSystemClipboard();
 
+	/**
+	 * Put path list.
+	 *
+	 * @param jmfxPathList
+	 *            the jmfx path list
+	 */
 	public static void putPathList(List<JMFXPath> jmfxPathList) {
 		JMOptional.getOptional(jmfxPathList)
 				.map(list -> list.stream().map(JMFXPath::getAbsolutePathName)
@@ -30,6 +39,9 @@ public class JMFXClipboard {
 		lastClipboardFileList = content.getFiles();
 	}
 
+	/**
+	 * Clear.
+	 */
 	synchronized public static void clear() {
 		lastClipboardFileList = null;
 		clipboard.clear();

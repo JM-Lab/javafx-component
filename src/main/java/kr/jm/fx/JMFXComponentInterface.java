@@ -4,6 +4,9 @@ import java.util.ResourceBundle;
 
 import javafx.scene.Node;
 
+/**
+ * The Interface JMFXComponentInterface.
+ */
 public interface JMFXComponentInterface extends JMFXInterface {
 
 	static ResourceBundle DefaultJMFXComponentI18nResourceBundle =

@@ -6,8 +6,16 @@ import javafx.scene.control.Button;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 
+/**
+ * The Class JMFXToastApplication.
+ */
 public class JMFXToastApplication extends Application {
 
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see javafx.application.Application#start(javafx.stage.Stage)
+	 */
 	@Override
 	public void start(Stage stage) {
 		Button progressiveDialogButton = new Button("Show Toast Message");
@@ -22,6 +30,12 @@ public class JMFXToastApplication extends Application {
 		stage.show();
 	}
 
+	/**
+	 * The main method.
+	 *
+	 * @param args
+	 *            the arguments
+	 */
 	public static void main(String[] args) {
 		launch(args);
 	}

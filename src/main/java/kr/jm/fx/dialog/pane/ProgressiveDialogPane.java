@@ -17,6 +17,9 @@ import kr.jm.fx.path.JMFXPathString;
 import kr.jm.utils.JMProgressiveManager;
 import kr.jm.utils.helper.JMString;
 
+/**
+ * The Class ProgressiveDialogPane.
+ */
 public class ProgressiveDialogPane extends DialogPane
 		implements JMFXCompositeComponentInterface {
 
@@ -35,19 +38,44 @@ public class ProgressiveDialogPane extends DialogPane
 	@FXML
 	Label percentLabel;
 
+	/**
+	 * Instantiates a new progressive dialog pane.
+	 */
 	public ProgressiveDialogPane() {
 		this(DefaultJMFXComponentI18nResourceBundle);
 	}
 
+	/**
+	 * Instantiates a new progressive dialog pane.
+	 *
+	 * @param i18nResourceBundle
+	 *            the i 18 n resource bundle
+	 */
 	public ProgressiveDialogPane(ResourceBundle i18nResourceBundle) {
 		initJMFXComponent(i18nResourceBundle);
 	}
 
+	/**
+	 * Sets the progressive manager.
+	 *
+	 * @param progressiveManager
+	 *            the progressive manager
+	 * @return the progressive dialog pane
+	 */
 	public ProgressiveDialogPane setProgressiveManager(
 			JMProgressiveManager<?, ?> progressiveManager) {
 		return setJMProgressiveManager(progressiveManager, true);
 	}
 
+	/**
+	 * Sets the JM progressive manager.
+	 *
+	 * @param progressiveManager
+	 *            the progressive manager
+	 * @param hasDefaultExpandableContent
+	 *            the has default expandable content
+	 * @return the progressive dialog pane
+	 */
 	public ProgressiveDialogPane setJMProgressiveManager(
 			JMProgressiveManager<?, ?> progressiveManager,
 			boolean hasDefaultExpandableContent) {
@@ -136,11 +164,21 @@ public class ProgressiveDialogPane extends DialogPane
 				() -> currentTotalLabel.setText(count + " / " + totalCount));
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see kr.jm.fx.JMFXComponentInterface#initializeView()
+	 */
 	@Override
 	public void initializeView() {
 
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see kr.jm.fx.JMFXComponentInterface#initializeJMFXEvent()
+	 */
 	@Override
 	public void initializeJMFXEvent() {
 

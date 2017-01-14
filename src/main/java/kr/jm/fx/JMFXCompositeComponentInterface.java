@@ -2,6 +2,9 @@ package kr.jm.fx;
 
 import java.util.ResourceBundle;
 
+/**
+ * The Interface JMFXCompositeComponentInterface.
+ */
 public interface JMFXCompositeComponentInterface
 		extends JMFXComponentInterface {
 

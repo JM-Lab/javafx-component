@@ -16,8 +16,26 @@ import kr.jm.fx.dialog.pane.ProgressiveDialogPane;
 import kr.jm.utils.JMProgressiveManager;
 import kr.jm.utils.helper.JMOptional;
 
+/**
+ * The Class JMFXDialog.
+ */
 public class JMFXDialog {
 
+	/**
+	 * Builds the dialog with ok result.
+	 *
+	 * @param <R>
+	 *            the generic type
+	 * @param title
+	 *            the title
+	 * @param headerText
+	 *            the header text
+	 * @param content
+	 *            the content
+	 * @param result
+	 *            the result
+	 * @return the dialog
+	 */
 	public static <R> Dialog<R> buildDialogWithOkResult(String title,
 			String headerText, Node content, R result) {
 		return buildDialog(title, headerText, content,
@@ -25,6 +43,23 @@ public class JMFXDialog {
 				ButtonType.OK);
 	}
 
+	/**
+	 * Builds the dialog.
+	 *
+	 * @param <R>
+	 *            the generic type
+	 * @param title
+	 *            the title
+	 * @param headerText
+	 *            the header text
+	 * @param content
+	 *            the content
+	 * @param resultFunction
+	 *            the result function
+	 * @param optionalButtonTypes
+	 *            the optional button types
+	 * @return the dialog
+	 */
 	public static <R> Dialog<R> buildDialog(String title, String headerText,
 			Node content, Function<ButtonType, R> resultFunction,
 			ButtonType... optionalButtonTypes) {
@@ -34,6 +69,23 @@ public class JMFXDialog {
 				optionalButtonTypes);
 	}
 
+	/**
+	 * Builds the dialog.
+	 *
+	 * @param <R>
+	 *            the generic type
+	 * @param title
+	 *            the title
+	 * @param headerText
+	 *            the header text
+	 * @param dialogPane
+	 *            the dialog pane
+	 * @param resultFunction
+	 *            the result function
+	 * @param optionalButtonTypes
+	 *            the optional button types
+	 * @return the dialog
+	 */
 	public static <R> Dialog<R> buildDialog(String title, String headerText,
 			DialogPane dialogPane, Function<ButtonType, R> resultFunction,
 			ButtonType... optionalButtonTypes) {
@@ -52,6 +104,17 @@ public class JMFXDialog {
 		return dialog;
 	}
 
+	/**
+	 * Builds the progressive dialog.
+	 *
+	 * @param progressiveManager
+	 *            the progressive manager
+	 * @param title
+	 *            the title
+	 * @param headerText
+	 *            the header text
+	 * @return the dialog
+	 */
 	public static Dialog<ProgressiveDialogPane> buildProgressiveDialog(
 			JMProgressiveManager<?, ?> progressiveManager, String title,
 			String headerText) {

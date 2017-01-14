@@ -26,6 +26,9 @@ import kr.jm.fx.helper.JMFXValueEvent;
 import kr.jm.fx.path.JMFXPath;
 import kr.jm.utils.helper.JMString;
 
+/**
+ * The Class CurrentPathComboBox.
+ */
 public class CurrentPathComboBox extends ComboBox<JMFXPath>
 		implements JMFXComponentInterface {
 
@@ -47,18 +50,38 @@ public class CurrentPathComboBox extends ComboBox<JMFXPath>
 		JMFXKeyEvent.fire(event, KeyCode.DOWN, this::show);
 	}
 
+	/**
+	 * Instantiates a new current path combo box.
+	 */
 	public CurrentPathComboBox() {
 		this(DefaultJMFXComponentI18nResourceBundle);
 	}
 
+	/**
+	 * Instantiates a new current path combo box.
+	 *
+	 * @param i18nResourceBundle
+	 *            the i 18 n resource bundle
+	 */
 	public CurrentPathComboBox(ResourceBundle i18nResourceBundle) {
 		initJMFXComponent(i18nResourceBundle);
 	}
 
+	/**
+	 * Change combo box value.
+	 *
+	 * @param jmfxPath
+	 *            the jmfx path
+	 */
 	public void changeComboBoxValue(JMFXPath jmfxPath) {
 		setValue(jmfxPath);
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see kr.jm.fx.JMFXComponentInterface#initializeView()
+	 */
 	@Override
 	public void initializeView() {
 		StringConverter<JMFXPath> stringConverter =
@@ -118,10 +141,20 @@ public class CurrentPathComboBox extends ComboBox<JMFXPath>
 				.orElseGet(Collections::emptyList);
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see kr.jm.fx.JMFXComponentInterface#initializeJMFXEvent()
+	 */
 	@Override
 	public void initializeJMFXEvent() {
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see kr.jm.fx.JMFXComponentInterface#bindModelToView()
+	 */
 	@Override
 	public void bindModelToView() {
 		this.currentPathComboBoxModel = new CurrentPathComboBoxModel();

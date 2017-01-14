@@ -27,6 +27,9 @@ import kr.jm.utils.enums.OS;
 import kr.jm.utils.helper.JMPath;
 import kr.jm.utils.time.JMTimeUtil;
 
+/**
+ * The Class JMFXPath.
+ */
 public class JMFXPath {
 
 	private static final String ROOT_PATH = "";
@@ -55,6 +58,13 @@ public class JMFXPath {
 	private StringProperty type;
 	private ObjectProperty<FileSize> fileSize;
 
+	/**
+	 * Gets the single instance of JMFXPath.
+	 *
+	 * @param path
+	 *            the path
+	 * @return single instance of JMFXPath
+	 */
 	public static JMFXPath getInstance(Path path) {
 		return Optional.ofNullable(path).filter(negate(ROOT_PATH::equals))
 				.map(Path::toAbsolutePath).map(Path::toString)
@@ -63,6 +73,13 @@ public class JMFXPath {
 				.orElse(rootPath);
 	}
 
+	/**
+	 * Gets the single instance of JMFXPath.
+	 *
+	 * @param pathString
+	 *            the path string
+	 * @return single instance of JMFXPath
+	 */
 	public static JMFXPath getInstance(String pathString) {
 		return Optional.ofNullable(pathString).filter(negate(ROOT_PATH::equals))
 				.map(JMPath::getPath).map(JMFXPath::getInstance)
@@ -160,6 +177,11 @@ public class JMFXPath {
 						.map(JMFXPath::getInstance);
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see java.lang.Object#toString()
+	 */
 	@Override
 	public String toString() {
 		setLastTimestamp();
@@ -188,6 +210,11 @@ public class JMFXPath {
 		return Optional.ofNullable(path.getParent()).map(JMFXPath::getInstance);
 	}
 
+	/**
+	 * Jmfx path property.
+	 *
+	 * @return the object property
+	 */
 	public ObjectProperty<JMFXPath> jmfxPathProperty() {
 		return this.jmfxPath;
 	}
@@ -196,6 +223,11 @@ public class JMFXPath {
 		return this.jmfxPathProperty().get();
 	}
 
+	/**
+	 * Date modified property.
+	 *
+	 * @return the string property
+	 */
 	public StringProperty dateModifiedProperty() {
 		return this.dateModified;
 	}
@@ -204,6 +236,11 @@ public class JMFXPath {
 		return this.dateModifiedProperty().get();
 	}
 
+	/**
+	 * Type property.
+	 *
+	 * @return the string property
+	 */
 	public StringProperty typeProperty() {
 		return this.type;
 	}
@@ -212,6 +249,11 @@ public class JMFXPath {
 		return this.typeProperty().get();
 	}
 
+	/**
+	 * File size property.
+	 *
+	 * @return the object property
+	 */
 	public ObjectProperty<FileSize> fileSizeProperty() {
 		return this.fileSize;
 	}
