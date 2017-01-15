@@ -34,23 +34,23 @@ Checkout the source code:
 
 ###For example :
 [Work With The Latest SceneBuilder](http://gluonhq.com/labs/scene-builder/)
-* 1. Jar/FXML Manager
+1. Jar/FXML Manager
 
  ![Screenshot](https://github.com/JM-Lab/javafx-component/blob/master/screenshot/1-SceneBuilderJarFXMLManager.png)
 
-* 2. Search And Add Jar
+2. Search And Add Jar
 
  ![Screenshot](https://github.com/JM-Lab/javafx-component/blob/master/screenshot/2-SceneBuilderSearchAddJar.png)
 
-* 3. Import JMFX Component 
+3. Import JMFX Component 
 
  ![Screenshot](https://github.com/JM-Lab/javafx-component/blob/master/screenshot/3-ScenebuilderImportDialog.png)
 
-* 4. Library Manager 
+4. Library Manager 
 
  ![Screenshot](https://github.com/JM-Lab/javafx-component/blob/master/screenshot/4-ScenebuilderLibraryManager.png)
 
-* 5. [![Maven Central](https://maven-badges.herokuapp.com/maven-central/kr.jmlab/jmlab-utils-java8/badge.svg)](http://search.maven.org/#artifactdetails%7Ckr.jmlab%7Cjmlab-utils-java8%7C0.1.84%7Cjar)Custom Component 
+5. Custom Component 
 
  ![Screenshot](https://github.com/JM-Lab/javafx-component/blob/master/screenshot/5-SceneBuilderCustomComponent.png)
 
